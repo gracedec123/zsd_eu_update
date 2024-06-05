@@ -1,0 +1,136 @@
+<mvc:View controllerName="webapp.webapp.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App id="app">
+		<Page id="page" title="{i18n>title}">
+			<content>
+				<IconTabBar id="idIconTabBarSeparatorIcon">
+					<items>
+						<IconTabFilter key="displayIcon" icon="sap-icon://activity-items">
+							<FlexBox height="100px" alignItems="End" justifyContent="Center">
+								<items>
+									<Label busy="false" design="Bold" id="__labelso" required="true" text="XLSX File Path" textAlign="Left" width="110px"
+										class="sapUiSmallMarginEnd"/>
+									<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" uploadUrl="upload/" fileType="XLSX,xlsx" change="onUpload"/>
+								</items>
+							</FlexBox>
+							<FlexBox height="35px" alignItems="End" justifyContent="Center">
+								<items>
+									<Button text="Upload" width="100px" id="buttonupload" press="onuploadBtn" type="Accept"/>
+								</items>
+							</FlexBox>
+							<HBox class="sapUiTinyMarginBeginEnd" alignItems="Center" justifyContent="End">
+							<SearchField class="bgtransparent" search="onSearch"/>
+							</HBox>
+							<Table id="tableId1" growing="true" growingScrollToLoad="true" items="{tableModel>/}">
+								<columns>
+									<Column width="75%">
+										<Text text="{i18n>action}" textAlign="Center"/>
+									</Column>
+									<Column width="80%">
+										<Text text="{i18n>shipto}"/>
+									</Column>
+									<Column width="125%">
+										<Text text="{i18n>product}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>newEU}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>newEUname}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>productname}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>shiptoname}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>count}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>lastModifiedBy}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>lastModifiedTime}"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<HBox>
+												<!--<Button icon="sap-icon://show" type="Accept" press="onView" class="sapUiTinyMarginEnd"/>-->
+												<Button icon="sap-icon://edit" press="onEdit"/>
+												<Button icon="sap-icon://delete" type="Reject" press="onDelete" class="sapUiTinyMarginBegin"/>
+											</HBox>
+											<Text text="{tableModel>KUNNR}"/>
+											<Text text="{tableModel>MATNR}"/>
+											<Text text="{tableModel>KUNNR_EU}"/>
+											<Text text="{tableModel>NAME1_EU}"/>
+											<Text text="{tableModel>MAKTX}"/>
+											<Text text="{tableModel>NAME1}"/>
+											<Text text="{tableModel>COUNT}"/>
+											<Text text="{tableModel>LAST_MODIFIED_USER}"/>
+											<Text text="{tableModel>LAST_MODIFIED_TIMESTAMP}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</IconTabFilter>
+						<IconTabFilter key="mapIcon" icon="sap-icon://display">
+							<HBox class="sapUiTinyMarginBeginEnd" alignItems="Center" justifyContent="End">
+								<SearchField class="bgtransparent" search="onSearch_EU"/>
+							</HBox>
+							<Table id="tableId2" growing="true" growingScrollToLoad="true" items="{tableModel2>/}">
+								<columns>
+									<Column width="75%">
+										<Text text="{i18n>shipto}"/>
+									</Column>
+									<Column width="120%">
+										<Text text="{i18n>product}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>newEU}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>newEUname}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>productname}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>shiptoname}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>count}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>lastModifiedBy}"/>
+									</Column>
+									<Column width="100%">
+										<Text text="{i18n>lastModifiedTime}"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{tableModel2>KUNNR}"/>
+											<Text text="{tableModel2>MATNR}"/>
+											<Text text="{tableModel2>KUNNR_EU}"/>
+											<Text text="{tableModel2>NAME1_EU}"/>
+											<Text text="{tableModel2>MAKTX}"/>
+											<Text text="{tableModel2>NAME1}"/>
+											<Text text="{tableModel2>COUNT}"/>
+											<Text text="{tableModel2>LAST_MODIFIED_USER}"/>
+											<Text text="{tableModel2>LAST_MODIFIED_TIMESTAMP}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</content>
+		</Page>
+	</App>
+</mvc:View>

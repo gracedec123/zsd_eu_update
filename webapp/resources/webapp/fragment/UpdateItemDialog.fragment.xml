@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog title="Update Record" draggable="true" stretch="false" contentWidth="65%">
+		<Panel class="bgwhite">
+			<l:Grid>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>shipto}" required="true"/>
+					<Input id="ip1" value="{/KUNNR}" editable="true"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>product}" required="true"/>
+					<Input id="ip2" value="{/MATNR}" editable="true"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>newEU}" required="true"/>
+					<Input id="ip3" value="{/KUNNR_EU}" editable="true" />
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>newEUname}" required="true"/>
+					<Input id="ip4" value="{/NAME1_EU}" editable="true" />
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>productname}" required="true"/>
+					<Input id="ip5" value="{/MAKTX}" editable="true"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>shiptoname}" required="true"/>
+					<Input id="ip6" value="{/NAME1}" editable="true"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>count}" required="true"/>
+					<Input id="ip7" value="{/COUNT}" editable="true" />
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>lastModifiedBy}"/>
+					<Input id="ip8" value="{/LAST_MODIFIED_USER}" editable="false"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Label text="{i18n>lastModifiedTime}"/>
+					<Input id="ip9" value="{/LAST_MODIFIED_TIMESTAMP}" editable="false"/>
+				</l:VerticalLayout>
+			</l:Grid>
+			<HBox justifyContent="End" class="sapUiTinyMarginEnd">
+				<Button text="Update" press="onUpdate" type="Emphasized" class="sapUiTinyMarginEnd"/>
+				<Button text="Cancel" press="onCancelUpdate" class="sapUiTinyMarginEnd"/>
+			</HBox>
+		</Panel>
+	</Dialog>
+</core:FragmentDefinition>

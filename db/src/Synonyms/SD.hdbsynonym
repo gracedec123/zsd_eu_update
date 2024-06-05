@@ -1,0 +1,42 @@
+{
+  "VBAK": {
+    "target": {
+      "object": "VBAK",
+      "schema": "ECCPRD_BHP",
+      "database": "BHD"
+    }
+  },
+  "VBAP": {
+    "target": {
+      "object": "VBAP",
+      "schema": "ECCPRD_BHP",
+      "database": "BHD"
+    }
+  },
+  "KNA1": {
+    "target": {
+      "object": "KNA1",
+      "schema": "ECCPRD_BHP",
+      "database": "BHD"
+    }
+  },
+  "MARA": {
+    "target": {
+      "object": "MARA",
+      "schema": "ECCPRD_BHP",
+      "database": "BHD"
+    }
+  },
+  "MAKT": {
+    "target": {
+      "object": "MAKT",
+      "schema": "ECCPRD_BHP",
+      "database": "BHD"
+    }
+  },
+  "End_user": {
+    "target": {
+      "object": "end_user"
+    }
+  }
+}
