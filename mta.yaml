@@ -37,17 +37,18 @@ modules:
           url: '~{url}'
           forwardAuthToken: true
 resources:
+  - name: UAA-service
+    type: com.sap.xs.uaa-space
   - name: hdi_db_2
+    parameters:
+      config:
+        schema: ZSD_EU_UPDATE_HDI_DB_2_1
     properties:
       hdi-container-name: '${service-name}'
     type: com.sap.xs.hdi-container
-    parameters:
-      config: ComplexType
   - name: cross-container-service-2
     parameters:
       service-name: CUPS_ECC
     properties:
       the-service-name: '${service-name}'
     type: org.cloudfoundry.existing-service
-  - name: UAA-service
-    type: com.sap.xs.uaa-space

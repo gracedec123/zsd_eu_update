@@ -1,136 +1,145 @@
-<mvc:View controllerName="webapp.webapp.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
-	xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"
-	xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View controllerName="webapp.webapp.controller.View1" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:sv="sap.ui.comp.smartvariants" xmlns:table="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App id="app">
-		<Page id="page" title="{i18n>title}">
-			<content>
-				<IconTabBar id="idIconTabBarSeparatorIcon">
-					<items>
-						<IconTabFilter key="displayIcon" icon="sap-icon://activity-items">
-							<FlexBox height="100px" alignItems="End" justifyContent="Center">
-								<items>
-									<Label busy="false" design="Bold" id="__labelso" required="true" text="XLSX File Path" textAlign="Left" width="110px"
-										class="sapUiSmallMarginEnd"/>
-									<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" uploadUrl="upload/" fileType="XLSX,xlsx" change="onUpload"/>
-								</items>
-							</FlexBox>
-							<FlexBox height="35px" alignItems="End" justifyContent="Center">
-								<items>
-									<Button text="Upload" width="100px" id="buttonupload" press="onuploadBtn" type="Accept"/>
-								</items>
-							</FlexBox>
-							<HBox class="sapUiTinyMarginBeginEnd" alignItems="Center" justifyContent="End">
-							<SearchField class="bgtransparent" search="onSearch"/>
-							</HBox>
-							<Table id="tableId1" growing="true" growingScrollToLoad="true" items="{tableModel>/}">
-								<columns>
-									<Column width="75%">
-										<Text text="{i18n>action}" textAlign="Center"/>
-									</Column>
-									<Column width="80%">
-										<Text text="{i18n>shipto}"/>
-									</Column>
-									<Column width="125%">
-										<Text text="{i18n>product}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>newEU}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>newEUname}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>productname}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>shiptoname}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>count}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>lastModifiedBy}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>lastModifiedTime}"/>
-									</Column>
-								</columns>
-								<items>
-									<ColumnListItem>
-										<cells>
-											<HBox>
-												<!--<Button icon="sap-icon://show" type="Accept" press="onView" class="sapUiTinyMarginEnd"/>-->
-												<Button icon="sap-icon://edit" press="onEdit"/>
-												<Button icon="sap-icon://delete" type="Reject" press="onDelete" class="sapUiTinyMarginBegin"/>
-											</HBox>
-											<Text text="{tableModel>KUNNR}"/>
-											<Text text="{tableModel>MATNR}"/>
-											<Text text="{tableModel>KUNNR_EU}"/>
-											<Text text="{tableModel>NAME1_EU}"/>
-											<Text text="{tableModel>MAKTX}"/>
-											<Text text="{tableModel>NAME1}"/>
-											<Text text="{tableModel>COUNT}"/>
-											<Text text="{tableModel>LAST_MODIFIED_USER}"/>
-											<Text text="{tableModel>LAST_MODIFIED_TIMESTAMP}"/>
-										</cells>
-									</ColumnListItem>
-								</items>
-							</Table>
+		<pages>
+			<Page id="page" title="{i18n>title}" enableScrolling="false">
+				<IconTabBar id="idIconTabBarSeparatorIcon" stretchContentHeight="true" class="fullHeight">
+					<items >
+						<IconTabFilter key="displayIcon" icon="sap-icon://activity-items" class="stickyToolbar">
+							<Toolbar class="stickyToolbar">
+								<Label busy="false" design="Bold" id="__labelso" required="true" text="XLSX File Path" textAlign="Left" width="110px"
+									class="sapUiSmallMarginEnd"/>
+								<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" uploadUrl="upload/" fileType="XLSX,xlsx" change="onUpload"/>
+								<ToolbarSpacer/>
+								<Button text="Upload" width="100px" id="buttonupload" press="onuploadBtn" type="Accept"/>
+								<ToolbarSpacer/>
+								<SearchField id="Search" class="bgtransparent" search="onSearch"/>
+								<ToolbarSpacer/>
+								<Button id="butMore" text="show / hide column" icon="sap-icon://open-command-field" press="onPress"/>
+							</Toolbar>
+							<ScrollContainer horizontal="false" vertical="true" class="tableScrollContainer" height="100%" width="100%">
+								<Table id="tableId1" inset="false" class="sapUiSizeCompact fixedTableHeader" growing="true" growingScrollToLoad="true"
+									items="{tableModel>/}">
+									<columns>
+										<Column width="65%">
+											<Text text="{i18n>action}" textAlign="Center"/>
+										</Column>
+										<Column width="65%">
+										<Button text="{i18n>shipto}" type="Transparent" width="200px" press="onFiltershipTo"/>
+										</Column>
+										<Column width="70%">
+										<Button text="{i18n>product}" type="Transparent" width="200px" press="onFilterprod"/>
+										</Column>
+										<Column width="80%">
+										<Button text="{i18n>newEU}" type="Transparent" width="200px" press="onFilterEU"/>
+										</Column>
+										<Column id="showColumn1" width="200%">
+										<Button text="{i18n>newEUname}" type="Transparent" width="200px" press="onFilterEUname"/>
+										</Column>
+										<Column id="showColumn2" width="220%">
+										<Button text="{i18n>productname}" type="Transparent" width="200px" press="onFilterprodname"/>
+										</Column>
+										<Column id="showColumn3" width="220%">
+										<Button text="{i18n>shiptoname}" type="Transparent" width="200px" press="onFiltershname"/>
+										</Column>
+										<Column id="hideColumn1" width="40%">
+										<Button text="{i18n>count}" type="Transparent" width="200px" press="onFiltercount"/>
+										</Column>
+										<Column id="hideColumn2" width="70%">
+										<Button text="{i18n>lastModifiedBy}" type="Transparent" width="200px" press="onFilterModif"/>
+										</Column>
+										<Column id="hideColumn3" width="80%">
+										<Button text="{i18n>lastModifiedTime}" type="Transparent" width="200px" press="onFilterTime"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<HBox>
+													<!--<Button icon="sap-icon://show" type="Accept" press="onView" class="sapUiTinyMarginEnd"/>-->
+													<Button icon="sap-icon://edit" press="onEdit"/>
+													<Button icon="sap-icon://delete" type="Reject" press="onDelete" class="sapUiTinyMarginBegin"/>
+												</HBox>
+												<Text text="{tableModel>KUNNR}"/>
+												<Text text="{tableModel>MATNR}"/>
+												<Text text="{tableModel>KUNNR_EU}"/>
+												<Text text="{tableModel>NAME1_EU}"/>
+												<Text text="{tableModel>MAKTX}"/>
+												<Text text="{tableModel>NAME1}"/>
+												<Text text="{tableModel>COUNT}"/>
+												<Text text="{tableModel>LAST_MODIFIED_USER}"/>
+												<Text text="{tableModel>LAST_MODIFIED_TIMESTAMP}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
 						</IconTabFilter>
-						<IconTabFilter key="mapIcon" icon="sap-icon://display">
-							<HBox class="sapUiTinyMarginBeginEnd" alignItems="Center" justifyContent="End">
+						<IconTabFilter key="mapIcon" icon="sap-icon://display" class="stickyToolbar">
+							<Toolbar class="stickyToolbar">
 								<SearchField class="bgtransparent" search="onSearch_EU"/>
-							</HBox>
-							<Table id="tableId2" growing="true" growingScrollToLoad="true" items="{tableModel2>/}">
-								<columns>
-									<Column width="75%">
-										<Text text="{i18n>shipto}"/>
-									</Column>
-									<Column width="120%">
-										<Text text="{i18n>product}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>newEU}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>newEUname}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>productname}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>shiptoname}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>count}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>lastModifiedBy}"/>
-									</Column>
-									<Column width="100%">
-										<Text text="{i18n>lastModifiedTime}"/>
-									</Column>
-								</columns>
-								<items>
-									<ColumnListItem>
-										<cells>
-											<Text text="{tableModel2>KUNNR}"/>
-											<Text text="{tableModel2>MATNR}"/>
-											<Text text="{tableModel2>KUNNR_EU}"/>
-											<Text text="{tableModel2>NAME1_EU}"/>
-											<Text text="{tableModel2>MAKTX}"/>
-											<Text text="{tableModel2>NAME1}"/>
-											<Text text="{tableModel2>COUNT}"/>
-											<Text text="{tableModel2>LAST_MODIFIED_USER}"/>
-											<Text text="{tableModel2>LAST_MODIFIED_TIMESTAMP}"/>
-										</cells>
-									</ColumnListItem>
-								</items>
-							</Table>
+								<ToolbarSpacer/>
+								<Button id="butMore1" text="show / hide column" icon="sap-icon://open-command-field" press="onPress_EU"/>
+							</Toolbar>
+							<ScrollContainer horizontal="false" vertical="true" class="tableScrollContainer" height="100%" width="100%">
+								<Table id="tableId2" inset="false" class="sapUiSizeCompact fixedTableHeader" growing="true" growingScrollToLoad="true"
+									items="{tableModel2>/}">
+									<columns>
+										<Column width="75%">
+											<Button text="{i18n>shipto}" type="Transparent" width="200px" press="onFiltershipTo_EU"/>
+										</Column>
+										<Column width="80%">
+											<Button text="{i18n>product}" type="Transparent" width="200px" press="onFilterprod_EU"/>
+										</Column>
+										<Column width="80%">
+											<Button text="{i18n>newEU}" type="Transparent" width="200px" press="onFilterEU_EU"/>
+										</Column>
+										<Column id="showColumn4" width="200%">
+											<Button text="{i18n>newEUname}" type="Transparent" width="200px" press="onFilterEUname_EU"/>
+										</Column>
+										<Column id="showColumn5" width="220%">
+											<Button text="{i18n>productname}" type="Transparent" width="200px" press="onFilterprodname_EU"/>
+										</Column>
+										<Column id="showColumn6" width="220%">
+											<Button text="{i18n>shiptoname}" type="Transparent" width="200px" press="onFiltershname_EU"/>
+										</Column>
+										<Column id="hideColumn4" width="40%">
+											<Button text="{i18n>count}" type="Transparent" width="200px" press="onFiltercount_EU"/>
+										</Column>
+										<Column id="hideColumn5" width="60%">
+											<Button text="{i18n>lastModifiedBy}" type="Transparent" width="200px" press="onFilterModif_EU"/>
+										</Column>
+										<Column id="hideColumn6" width="70%">
+											<Button text="{i18n>lastModifiedTime}" type="Transparent" width="200px" press="onFilterTime_EU"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{tableModel2>KUNNR}"/>
+												<Text text="{tableModel2>MATNR}"/>
+												<Text text="{tableModel2>KUNNR_EU}"/>
+												<Text text="{tableModel2>NAME1_EU}"/>
+												<Text text="{tableModel2>MAKTX}"/>
+												<Text text="{tableModel2>NAME1}"/>
+												<Text text="{tableModel2>COUNT}"/>
+												<Text text="{tableModel2>LAST_MODIFIED_USER}"/>
+												<Text text="{tableModel2>LAST_MODIFIED_TIMESTAMP}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
 						</IconTabFilter>
 					</items>
 				</IconTabBar>
-			</content>
-		</Page>
+				
+				<footer>
+					<Bar id="__bar0"/>
+				</footer>
+			</Page>
+		</pages>
 	</App>
 </mvc:View>

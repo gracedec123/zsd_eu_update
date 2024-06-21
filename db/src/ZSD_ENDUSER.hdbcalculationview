@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SD_ENDUSER" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="ZSD_ENDUSER" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
 <descriptions defaultDescription="SD_ENDUSER"/>
 <localVariables/>
 <variableMappings/>
@@ -18,6 +18,9 @@
   </DataSource>
   <DataSource id="KNA1">
     <resourceUri>KNA1</resourceUri>
+  </DataSource>
+  <DataSource id="End_user">
+    <resourceUri>End_user</resourceUri>
   </DataSource>
 </dataSources>
 <snapshotProcedures/>
@@ -77,12 +80,16 @@
       <viewAttribute id="VBELN"/>
       <viewAttribute id="MATNR"/>
       <viewAttribute id="KUNNR"/>
+    
+      <viewAttribute id="ERDAT"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ERDAT" source="ERDAT"/>
     </input>
     <input node="Projection_7">
       <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
@@ -107,15 +114,21 @@
       <viewAttribute id="MATNR"/>
       <viewAttribute id="KUNNR"/>
       <viewAttribute id="MAKTX"/>
+    
+      <viewAttribute id="ERDAT"/>
+      <viewAttribute id="SPRAS"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_2">
       <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ERDAT" source="ERDAT"/>
     </input>
     <input node="Projection_3">
       <mapping xsi:type="Calculation:AttributeMapping" target="MAKTX" source="MAKTX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
     </input>
     <joinAttribute name="MATNR"/>
@@ -135,6 +148,9 @@
       <viewAttribute id="KUNNR"/>
       <viewAttribute id="MAKTX"/>
       <viewAttribute id="NAME1"/>
+    
+      <viewAttribute id="ERDAT"/>
+      <viewAttribute id="SPRAS"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="Join_3">
@@ -142,6 +158,9 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MAKTX" source="MAKTX"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="ERDAT" source="ERDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
     </input>
     <input node="Projection_8">
       <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
@@ -149,28 +168,89 @@
     </input>
     <joinAttribute name="KUNNR"/>
   </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_9">
+    <viewAttributes>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="KUNNR"/>
+      <viewAttribute id="KUNNR_EU"/>
+      <viewAttribute id="NAME1_EU"/>
+      <viewAttribute id="MAKTX"/>
+      <viewAttribute id="NAME1"/>
+      <viewAttribute id="COUNT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="End_user"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_5" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="KUNNR"/>
+      <viewAttribute id="KUNNR_EU"/>
+      <viewAttribute id="NAME1_EU"/>
+      <viewAttribute id="MAKTX"/>
+      <viewAttribute id="NAME1"/>
+      <viewAttribute id="VBELN"/>
+    
+      <viewAttribute id="ERDAT"/>
+      <viewAttribute id="SPRAS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_9">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR_EU" source="KUNNR_EU"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME1_EU" source="NAME1_EU"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAKTX" source="MAKTX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+    </input>
+    <input node="Join_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ERDAT" source="ERDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+    </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="KUNNR"/>
+  </calculationView>
 </calculationViews>
-<logicalModel id="Join_4">
+<logicalModel id="Join_5">
   <attributes>
     <attribute id="VBELN" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="VBELN"/>
-      <keyMapping columnObjectName="Join_4" columnName="VBELN"/>
+      <keyMapping columnObjectName="Join_5" columnName="VBELN"/>
     </attribute>
     <attribute id="MATNR" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MATNR"/>
-      <keyMapping columnObjectName="Join_4" columnName="MATNR"/>
+      <keyMapping columnObjectName="Join_5" columnName="MATNR"/>
     </attribute>
-    <attribute id="KUNNR" order="3" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="KUNNR"/>
-      <keyMapping columnObjectName="Join_4" columnName="KUNNR"/>
-    </attribute>
-    <attribute id="MAKTX" order="4" displayAttribute="false" attributeHierarchyActive="false">
+    <attribute id="MAKTX" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MAKTX"/>
-      <keyMapping columnObjectName="Join_4" columnName="MAKTX"/>
+      <keyMapping columnObjectName="Join_5" columnName="MAKTX"/>
     </attribute>
-    <attribute id="NAME1" order="5" displayAttribute="false" attributeHierarchyActive="false">
-      <descriptions defaultDescription="Name 1"/>
-      <keyMapping columnObjectName="Join_4" columnName="NAME1"/>
+    <attribute id="SPRAS" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SPRAS"/>
+      <keyMapping columnObjectName="Join_5" columnName="SPRAS"/>
+    </attribute>
+    <attribute id="KUNNR" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KUNNR"/>
+      <keyMapping columnObjectName="Join_5" columnName="KUNNR"/>
+    </attribute>
+    <attribute id="NAME1" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME1"/>
+      <keyMapping columnObjectName="Join_5" columnName="NAME1"/>
+    </attribute>
+    <attribute id="ERDAT" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ERDAT"/>
+      <keyMapping columnObjectName="Join_5" columnName="ERDAT"/>
+    </attribute>
+    <attribute id="KUNNR_EU" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="KUNNR_EU"/>
+      <keyMapping columnObjectName="Join_5" columnName="KUNNR_EU"/>
+    </attribute>
+    <attribute id="NAME1_EU" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME1_EU"/>
+      <keyMapping columnObjectName="Join_5" columnName="NAME1_EU"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>
@@ -181,13 +261,13 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="534" y="112"/>
+      <upperLeftCorner x="660" y="112"/>
     
       <rectangleSize width="160"/>
     </shape>
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="118" y="676"/>
+      <upperLeftCorner x="118" y="836"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
@@ -199,19 +279,19 @@
       <rectangleSize width="250"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="91" y="836"/>
+      <upperLeftCorner x="91" y="996"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="302" y="836"/>
+      <upperLeftCorner x="302" y="996"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="477" y="516"/>
+      <upperLeftCorner x="474" y="676"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="145" y="516"/>
+      <upperLeftCorner x="145" y="676"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
@@ -223,11 +303,11 @@
       <rectangleSize width="250"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_7" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="380" y="676"/>
+      <upperLeftCorner x="380" y="836"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="172" y="356"/>
+      <upperLeftCorner x="172" y="516"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
@@ -239,11 +319,11 @@
       <rectangleSize width="250"/>
     </shape>
     <shape expanded="true" modelObjectName="Projection_8" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="592" y="356"/>
+      <upperLeftCorner x="584" y="516"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="534" y="217"/>
+      <upperLeftCorner x="198" y="356"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
@@ -253,6 +333,23 @@
     <shape modelObjectName="Projection_8" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="136"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_9" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="708" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="660" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_9" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="146"/>
+    </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="125"/>
     </shape>
   </shapes>
 </layout>

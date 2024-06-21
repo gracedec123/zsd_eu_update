@@ -38,5 +38,12 @@
     "target": {
       "object": "end_user"
     }
+  },
+  "VBPA": {
+    "target": {
+      "object": "VBPA",
+      "schema": "ECCPRD_BHP",
+      "database": "BHD"
+    }
   }
 }
