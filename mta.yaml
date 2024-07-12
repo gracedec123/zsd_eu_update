@@ -2,53 +2,53 @@ ID: zsd_eu_update
 _schema-version: '2.1'
 version: 0.0.1
 modules:
-  - name: db
+  - name: db_EU
     type: hdb
-    path: db
+    path: db_EU
     requires:
       - name: hdi_db_2
         properties:
           TARGET_CONTAINER: '~{hdi-container-name}'
-      - name: cross-container-service-2
+      - name: cross-container-service-1
         group: SERVICE_REPLACEMENTS
         properties:
           key: ServiceName_1
           service: '~{the-service-name}'
-  - name: xsjs
+  - name: xsjs_EU
     type: nodejs
-    path: xsjs
+    path: xsjs_EU
     provides:
       - name: xsjs_api
         properties:
           url: '${default-url}'
     requires:
-      - name: UAA-service
+      - name: UAA-service_EU
       - name: hdi_db_2
-      - name: db
-  - name: webapp
+      - name: db_EU
+  - name: webapp_EU
     type: html5
-    path: webapp
+    path: webapp_EU
     requires:
-      - name: UAA-service
       - name: xsjs_api
         group: destinations
         properties:
           name: xsjs-backend
           url: '~{url}'
           forwardAuthToken: true
+      - name: UAA-service_EU
 resources:
-  - name: UAA-service
-    type: com.sap.xs.uaa-space
-  - name: hdi_db_2
-    parameters:
-      config:
-        schema: ZSD_EU_UPDATE_HDI_DB_2_1
-    properties:
-      hdi-container-name: '${service-name}'
-    type: com.sap.xs.hdi-container
-  - name: cross-container-service-2
+  - name: cross-container-service-1
     parameters:
       service-name: CUPS_ECC
     properties:
       the-service-name: '${service-name}'
     type: org.cloudfoundry.existing-service
+  - name: UAA-service_EU
+    type: com.sap.xs.uaa-space
+  - name: hdi_db_2
+    parameters:
+      config:
+        schema: ZSD_EU_U
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
