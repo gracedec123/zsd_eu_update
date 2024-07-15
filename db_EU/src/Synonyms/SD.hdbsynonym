@@ -2,36 +2,31 @@
   "VBAK": {
     "target": {
       "object": "VBAK",
-      "schema": "ECCPRD_BHP",
-      "database": "BHD"
+      "schema": "ECCPRD_BHP"
     }
   },
   "VBAP": {
     "target": {
       "object": "VBAP",
-      "schema": "ECCPRD_BHP",
-      "database": "BHD"
+      "schema": "ECCPRD_BHP"
     }
   },
   "KNA1": {
     "target": {
       "object": "KNA1",
-      "schema": "ECCPRD_BHP",
-      "database": "BHD"
+      "schema": "ECCPRD_BHP"
     }
   },
   "MARA": {
     "target": {
       "object": "MARA",
-      "schema": "ECCPRD_BHP",
-      "database": "BHD"
+      "schema": "ECCPRD_BHP"
     }
   },
   "MAKT": {
     "target": {
       "object": "MAKT",
-      "schema": "ECCPRD_BHP",
-      "database": "BHD"
+      "schema": "ECCPRD_BHP"
     }
   },
   "End_user": {
@@ -42,8 +37,7 @@
   "VBPA": {
     "target": {
       "object": "VBPA",
-      "schema": "ECCPRD_BHP",
-      "database": "BHD"
+      "schema": "ECCPRD_BHP"
     }
   }
 }
